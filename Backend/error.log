@@ -1,0 +1,17 @@
+C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\path-to-regexp\dist\index.js:123
+        throw new TypeError(`Unexpected ${nextType} at ${index}, expected ${type}: ${DEBUG_URL}`);
+              ^
+
+TypeError: Unexpected ? at 24, expected END: https://git.new/pathToRegexpError
+    at Iter.consume (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\path-to-regexp\dist\index.js:123:15)
+    at consume (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\path-to-regexp\dist\index.js:179:16)
+    at parse (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\path-to-regexp\dist\index.js:183:20)
+    at C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\path-to-regexp\dist\index.js:294:74
+    at Array.map (<anonymous>)
+    at pathToRegexp (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\path-to-regexp\dist\index.js:294:25)
+    at Object.match (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\path-to-regexp\dist\index.js:264:30)
+    at matcher (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\Users\Akhil Singh\Desktop\real state\Real-Estate\Quirex\Backend\node_modules\router\index.js:428:17)
+
+Node.js v22.14.0
