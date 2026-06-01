@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Environment variables (NEVER push to GitHub)
+.env
+.env.local
+.env.production
+
+# Logs
+logs/
+*.log
+error.log
+npm-debug.log*
+
+# Uploads (user-generated content)
+uploads/*
+!uploads/.gitkeep
+
+# Scratch/temp files
+scratch/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
