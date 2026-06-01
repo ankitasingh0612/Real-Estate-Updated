@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState } from 'react'
 import NavBar from '../landingComponents/NavBar'
 import axios from 'axios'
@@ -14,7 +15,7 @@ const UserWishlist = () => {
 
   const fetchData = async () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
-    const response = await axios.post('http://localhost:9000/api/user-wishlist', {
+    const response = await axios.post(API_BASE + '/api/user-wishlist', {
       userId: userData?._id
     })
     if (response?.data?.code == 200) {
@@ -25,7 +26,7 @@ const UserWishlist = () => {
 
   const handleRemove = async (propertyId) => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
-    const response = await axios.post('http://localhost:9000/api/wishlist-toggle', {
+    const response = await axios.post(API_BASE + '/api/wishlist-toggle', {
       userId: userData?._id,
       propertyId
     });
@@ -83,7 +84,7 @@ const UserWishlist = () => {
                           <img
                             height="60"
                             width="100"
-                            src={`http://localhost:9000/img/${item?.pic}`}
+                            src={`${API_BASE}/img/${item?.pic}`}
                             alt={item?.title}
                             style={{ borderRadius: '6px', objectFit: 'cover' }}
                           />

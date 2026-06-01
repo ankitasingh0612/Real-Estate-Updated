@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -26,7 +27,7 @@ const ChatWidget = ({ show, onClose, propertyId, sellerId, sellerName }) => {
     const fetchMessages = async () => {
         if (!userInfo || !sellerId) return;
         try {
-            const response = await axios.post('http://localhost:9000/api/chat/chat-history', {
+            const response = await axios.post(API_BASE + '/api/chat/chat-history', {
                 userId: userInfo._id,
                 otherId: sellerId,
                 propertyId: propertyId
@@ -56,7 +57,7 @@ const ChatWidget = ({ show, onClose, propertyId, sellerId, sellerName }) => {
         }
 
         try {
-            const response = await axios.post('http://localhost:9000/api/chat/send-message', {
+            const response = await axios.post(API_BASE + '/api/chat/send-message', {
                 senderId: userInfo._id,
                 receiverId: sellerId,
                 propertyId: propertyId,

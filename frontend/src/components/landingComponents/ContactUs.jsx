@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React from 'react'
 import { FaUser } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
@@ -36,7 +37,7 @@ const ContactUs = () => {
       });
 
       // 1. Save to your Backend Database (Ensures message is never lost)
-      const response = await axios.post('http://localhost:9000/api/contact-us', data);
+      const response = await axios.post(API_BASE + '/api/contact-us', data);
 
       if (response?.data?.code === 200) {
         // 2. EmailJS Logic (Optional: Only runs if you replace these placeholders)

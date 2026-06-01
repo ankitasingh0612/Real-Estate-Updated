@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState } from 'react'
 import NavBar from '../landingComponents/NavBar'
 import axios from 'axios';
@@ -9,7 +10,7 @@ const AdminContactUsList = () => {
   }, [])
   const fetchData = async () => {
 
-    const response = await axios.post('http://localhost:9000/api/contact-us-list'
+    const response = await axios.post(API_BASE + '/api/contact-us-list'
 
     );
     if (response?.data?.code == 200) {

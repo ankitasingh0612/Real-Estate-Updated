@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavBar from '../landingComponents/NavBar';
@@ -31,15 +32,15 @@ const AdminDashboard = () => {
         try {
             setLoading(true);
             const url = type === 'admin' 
-                ? 'http://localhost:9000/api/dashboard-stats/admin' 
-                : `http://localhost:9000/api/dashboard-stats/${userId}`;
+                ? API_BASE + '/api/dashboard-stats/admin' 
+                : `${API_BASE}/api/dashboard-stats/${userId}`;
             
             const response = await axios.get(url);
             if (response.data.code === 200) {
                 setStats(response.data.data);
             }
 
-            const visitUrl = `http://localhost:9000/api/admin-visits?userId=${userId}&userType=${type}`;
+            const visitUrl = `${API_BASE}/api/admin-visits?userId=${userId}&userType=${type}`;
             const visitRes = await axios.get(visitUrl);
             if (visitRes.data.code === 200) {
                 setRecentVisits(visitRes.data.data.slice(0, 5));
@@ -70,7 +71,7 @@ const AdminDashboard = () => {
 
     const handleSendAnnouncement = async () => {
         try {
-            const response = await axios.post('http://localhost:9000/api/notifications/send-announcement');
+            const response = await axios.post(API_BASE + '/api/notifications/send-announcement');
             if (response.data.code === 200) {
                 Swal.fire('Success', response.data.message, 'success');
             } else {
@@ -107,7 +108,7 @@ const AdminDashboard = () => {
                         <div className="col-md-4 d-none d-md-block text-center">
                             <div className="position-relative">
                                 <img 
-                                    src={user?.profile ? `http://localhost:9000/img/${user.profile}` : "https://via.placeholder.com/150"} 
+                                    src={user?.profile ? `${API_BASE}/img/${user.profile}` : "https://via.placeholder.com/150"} 
                                     alt="Profile" 
                                     className="rounded-circle shadow-lg border border-4 border-white"
                                     style={{ width: '150px', height: '150px', objectFit: 'cover' }}

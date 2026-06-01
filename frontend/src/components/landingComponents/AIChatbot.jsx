@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { FaRobot, FaTimes, FaPaperPlane, FaMinus, FaQuestionCircle } from 'react-icons/fa';
@@ -37,7 +38,7 @@ const AIChatbot = () => {
                 parts: [{ text: msg.text }]
             }));
 
-            const response = await axios.post('http://localhost:9000/api/ai/chat', {
+            const response = await axios.post(API_BASE + '/api/ai/chat', {
                 message: userMessage,
                 history: history
             });

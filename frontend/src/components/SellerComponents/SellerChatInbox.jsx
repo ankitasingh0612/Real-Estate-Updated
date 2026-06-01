@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import NavBar from '../landingComponents/NavBar';
@@ -31,7 +32,7 @@ const SellerChatInbox = () => {
 
     const fetchConversations = async (userId) => {
         try {
-            const response = await axios.get(`http://localhost:9000/api/chat/my-conversations/${userId}`);
+            const response = await axios.get(`${API_BASE}/api/chat/my-conversations/${userId}`);
             if (response.data.code === 200) {
                 setConversations(response.data.data);
             }
@@ -43,7 +44,7 @@ const SellerChatInbox = () => {
     const fetchMessages = async () => {
         if (!userInfo || !selectedConvo) return;
         try {
-            const response = await axios.post('http://localhost:9000/api/chat/chat-history', {
+            const response = await axios.post(API_BASE + '/api/chat/chat-history', {
                 userId: userInfo._id,
                 otherId: selectedConvo.partnerId,
                 propertyId: selectedConvo.propertyId
@@ -54,7 +55,7 @@ const SellerChatInbox = () => {
 
                 // Mark read if there are unread
                 if (selectedConvo.unreadCount > 0) {
-                    await axios.post('http://localhost:9000/api/chat/mark-read', {
+                    await axios.post(API_BASE + '/api/chat/mark-read', {
                         senderId: selectedConvo.partnerId,
                         receiverId: userInfo._id,
                         propertyId: selectedConvo.propertyId
@@ -72,7 +73,7 @@ const SellerChatInbox = () => {
         if (!newMessage.trim() || !userInfo || !selectedConvo) return;
 
         try {
-            const response = await axios.post('http://localhost:9000/api/chat/send-message', {
+            const response = await axios.post(API_BASE + '/api/chat/send-message', {
                 senderId: userInfo.userType === 'admin' ? 'admin' : userInfo._id,
                 receiverId: selectedConvo.partnerId,
                 propertyId: selectedConvo.propertyId,

@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState, useMemo } from 'react'
 import { IoBedOutline } from "react-icons/io5";
 import { LiaBathSolid } from "react-icons/lia";
@@ -40,7 +41,7 @@ const Property = () => {
     setLoading(true)
     setError(null)
     try {
-      const response = await axios.get('http://localhost:9000/api/property-list');
+      const response = await axios.get(API_BASE + '/api/property-list');
       if (response?.data?.code == 200) {
         setListData(response?.data?.data || [])
       } else {
@@ -58,7 +59,7 @@ const Property = () => {
     try {
       const userData = JSON.parse(localStorage.getItem('userInfo'));
       if (!userData?._id) return;
-      const response = await axios.post('http://localhost:9000/api/user-wishlist-ids', { userId: userData._id });
+      const response = await axios.post(API_BASE + '/api/user-wishlist-ids', { userId: userData._id });
       if (response?.data?.code == 200) {
         setWishlistIds(response?.data?.data || [])
       }
@@ -67,7 +68,7 @@ const Property = () => {
 
   const fetchAllRatings = async () => {
     try {
-      const response = await axios.get('http://localhost:9000/api/get-all-ratings');
+      const response = await axios.get(API_BASE + '/api/get-all-ratings');
       if (response?.data?.code == 200) {
         setRatingsMap(response?.data?.data || {})
       }
@@ -118,7 +119,7 @@ const Property = () => {
   const handleWishlistToggle = async (propertyId) => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     if (!userData?._id) { navigate('/login'); return }
-    const response = await axios.post('http://localhost:9000/api/wishlist-toggle', {
+    const response = await axios.post(API_BASE + '/api/wishlist-toggle', {
       userId: userData._id, propertyId
     });
     if (response?.data?.code == 200) {
@@ -134,7 +135,7 @@ const Property = () => {
   const handleBuy = async (propertyId) => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     if (!userData?._id) { navigate('/login'); return }
-    const response = await axios.post('http://localhost:9000/api/buy', { userId: userData?._id, propertyId });
+    const response = await axios.post(API_BASE + '/api/buy', { userId: userData?._id, propertyId });
     if (response?.data?.code == 200) {
       Swal.fire({ title: "Buy Property", text: response?.data?.message, icon: 'success' })
     } else {
@@ -276,7 +277,7 @@ const Property = () => {
                         boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
                       }}>{item.bhk} BHK</div>
                     )}
-                    <img src={`http://localhost:9000/img/${item?.pic}`} className="card-img-top img-fluid featuredimg" alt="..." />
+                    <img src={`${API_BASE}/img/${item?.pic}`} className="card-img-top img-fluid featuredimg" alt="..." />
                     <div className="card-body">
                       <p className='mycolor1'><b>${item?.price}</b>/Month</p>
                       <h5 className="card-title"><b className='mycolor2'>{item?.title}</b></h5>

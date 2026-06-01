@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaBell } from 'react-icons/fa';
@@ -11,7 +12,7 @@ const NotificationBell = ({ userId }) => {
 
     const fetchNotifications = async () => {
         try {
-            const response = await axios.get(`http://localhost:9000/api/notifications/get-notifications/${userId}`);
+            const response = await axios.get(`${API_BASE}/api/notifications/get-notifications/${userId}`);
             if (response.data.code === 200) {
                 setNotifications(response.data.data);
                 setUnreadCount(response.data.unreadCount);
@@ -31,7 +32,7 @@ const NotificationBell = ({ userId }) => {
 
     const markAsRead = async (id = null) => {
         try {
-            await axios.post('http://localhost:9000/api/notifications/mark-as-read', {
+            await axios.post(API_BASE + '/api/notifications/mark-as-read', {
                 notificationId: id,
                 userId: id ? null : userId
             });

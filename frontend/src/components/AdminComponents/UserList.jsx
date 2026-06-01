@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 // import React from 'react'
 // import NavBar from '../landingComponents/NavBar'
 // const UserList = () => {
@@ -22,7 +23,7 @@ const UserList = () => {
     fetchData();
   }, [])
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:9000/api/admin-user-list');
+    const response = await axios.get(API_BASE + '/api/admin-user-list');
     if (response?.data?.code == 200) {
       setData(response?.data?.data)
     }
@@ -58,7 +59,7 @@ const UserList = () => {
                       <td> {item?.contact}   </td>
                       <td>{item?.address}    </td>
                      
-                      <td><img  height="60" width="100" src={`http://localhost:9000/img/${item?.profile}`} alt=''/> </td>
+                      <td><img  height="60" width="100" src={`${API_BASE}/img/${item?.profile}`} alt=''/> </td>
                      
                     </tr>
                   </React.Fragment>)

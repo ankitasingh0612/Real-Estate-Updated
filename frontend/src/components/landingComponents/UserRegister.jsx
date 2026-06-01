@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React from 'react';
 import { FaUser, FaEnvelope, FaKey } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
@@ -51,7 +52,7 @@ const UserRegister = () => {
     }
     formData.append('profile', data.profile[0]); 
 
-    const response = await axios.post('http://localhost:9000/api/user-register', formData, {
+    const response = await axios.post(API_BASE + '/api/user-register', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       }

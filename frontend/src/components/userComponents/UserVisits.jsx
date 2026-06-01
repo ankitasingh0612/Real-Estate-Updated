@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState } from 'react'
 import NavBar from '../landingComponents/NavBar'
 import axios from 'axios'
@@ -12,7 +13,7 @@ const UserVisits = () => {
 
   const fetchData = async () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'))
-    const response = await axios.post('http://localhost:9000/api/user-visits', { userId: userData?._id })
+    const response = await axios.post(API_BASE + '/api/user-visits', { userId: userData?._id })
     if (response?.data?.code == 200) {
       setList(response?.data?.data)
     }

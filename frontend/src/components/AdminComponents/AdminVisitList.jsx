@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState } from 'react'
 import NavBar from '../landingComponents/NavBar'
 import axios from 'axios'
@@ -10,7 +11,7 @@ const AdminVisitList = () => {
   useEffect(() => { fetchData() }, [])
 
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:9000/api/admin-visits')
+    const response = await axios.get(API_BASE + '/api/admin-visits')
     if (response?.data?.code == 200) {
       setList(response?.data?.data)
     }
@@ -18,7 +19,7 @@ const AdminVisitList = () => {
   }
 
   const handleStatus = async (id, status) => {
-    const response = await axios.post('http://localhost:9000/api/update-visit-status', { _id: id, status })
+    const response = await axios.post(API_BASE + '/api/update-visit-status', { _id: id, status })
     if (response?.data?.code == 200) {
       Swal.fire({
         title: 'Updated!',

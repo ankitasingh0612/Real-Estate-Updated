@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState } from 'react'
 import { IoBedOutline } from "react-icons/io5";
 import { LiaBathSolid } from "react-icons/lia";
@@ -14,8 +15,8 @@ const AdminPropertyList = () => {
   const fetchData = async () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const url = userInfo?.userType === 'seller' 
-      ? `http://localhost:9000/api/seller-properties/${userInfo._id}` 
-      : 'http://localhost:9000/api/property-list';
+      ? `${API_BASE}/api/seller-properties/${userInfo._id}` 
+      : API_BASE + '/api/property-list';
 
     const response = await axios.get(url);
      if(response?.data?.code==200){
@@ -34,7 +35,7 @@ const AdminPropertyList = () => {
   confirmButtonText: "Yes, delete it!"
 }).then(async(result) => {
   if (result.isConfirmed) {
-    const response=await axios.post('http://localhost:9000/api/delete-property',{_id});
+    const response=await axios.post(API_BASE + '/api/delete-property',{_id});
     if(response?.data?.code==200){
       Swal.fire({
         title:"Deleted Property",
@@ -73,7 +74,7 @@ const AdminPropertyList = () => {
               return (<React.Fragment key={item?._id || index}>
                 <div className='col-sm-3  px-3 mb-4'>
                   <div className="card  mx-auto shadow-lg border border-0">
-                    <img src={`http://localhost:9000/img/${item?.pic}`}  className="card-img-top img-fluid featuredimg" alt="..." />
+                    <img src={`${API_BASE}/img/${item?.pic}`}  className="card-img-top img-fluid featuredimg" alt="..." />
                     <div className="card-body">
                       <p className='mycolor1'><b>${item?.price}</b>/Month</p>
                       <h5 className="card-title"><b className='mycolor2'>{item?.title}</b></h5>

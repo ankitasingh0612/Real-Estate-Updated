@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaCog, FaTimes } from 'react-icons/fa';
@@ -15,7 +16,7 @@ const PreferenceModal = ({ userId, isOpen, onClose }) => {
 
     useEffect(() => {
         if (isOpen && userId) {
-            axios.get(`http://localhost:9000/api/notifications/get-preferences/${userId}`)
+            axios.get(`${API_BASE}/api/notifications/get-preferences/${userId}`)
                 .then(res => {
                     if (res.data.data) setPrefs(res.data.data);
                 })
@@ -26,7 +27,7 @@ const PreferenceModal = ({ userId, isOpen, onClose }) => {
     const handleSave = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:9000/api/notifications/save-preferences', {
+            const response = await axios.post(API_BASE + '/api/notifications/save-preferences', {
                 userId, ...prefs
             });
             if (response.data.code === 200) {

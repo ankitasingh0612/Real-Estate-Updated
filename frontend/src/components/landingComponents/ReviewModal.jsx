@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect, useState } from 'react'
 import { FaStar, FaRegStar, FaTimes, FaUser } from 'react-icons/fa'
 import axios from 'axios'
@@ -19,7 +20,7 @@ const ReviewModal = ({ show, onClose, propertyId, propertyTitle }) => {
   }, [show, propertyId])
 
   const fetchReviews = async () => {
-    const response = await axios.post('http://localhost:9000/api/get-reviews', { propertyId })
+    const response = await axios.post(API_BASE + '/api/get-reviews', { propertyId })
     if (response?.data?.code == 200) {
       setReviews(response?.data?.data?.reviews || [])
       setAvgRating(response?.data?.data?.avgRating || 0)
@@ -38,7 +39,7 @@ const ReviewModal = ({ show, onClose, propertyId, propertyTitle }) => {
       return
     }
     setLoading(true)
-    const response = await axios.post('http://localhost:9000/api/add-review', {
+    const response = await axios.post(API_BASE + '/api/add-review', {
       userId: userData._id,
       propertyId,
       userName: userData.name,

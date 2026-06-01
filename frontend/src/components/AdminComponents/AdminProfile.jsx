@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useEffect } from 'react';
 import { FaUser, FaEnvelope, FaKey } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
@@ -53,7 +54,7 @@ const AdminProfile = () => {
     formData.append('profile', data.profile[0]); 
     formData.append('userId',userData?._id)
 
-    const response = await axios.put('http://localhost:9000/api/user-update', formData, {
+    const response = await axios.put(API_BASE + '/api/user-update', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       }

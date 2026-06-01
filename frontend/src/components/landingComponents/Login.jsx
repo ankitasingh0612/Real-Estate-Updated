@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React from 'react'
 import { FaEnvelope } from "react-icons/fa";
 import { FaKey } from "react-icons/fa";
@@ -21,7 +22,7 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
   const handleLogin = async (data) => {
-    const response = await axios.post('http://localhost:9000/api/login', data)
+    const response = await axios.post(API_BASE + '/api/login', data)
     if (response?.data?.code == 200) {
       Swal.fire({
         title: "Login",

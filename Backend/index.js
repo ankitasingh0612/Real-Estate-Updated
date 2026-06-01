@@ -12,7 +12,11 @@ import cors from 'cors'
 const app=express();
 app.use(express.json());
 app.use(fileUpload());
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 const PORT= process.env.PORT || 9000; 
 app.use('/img', express.static('uploads'));
 app.use('/api/ai', aiRoute);

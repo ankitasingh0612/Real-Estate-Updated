@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React, { useState } from 'react'
 import { FaTimes, FaCalendarAlt, FaClock } from 'react-icons/fa'
 import axios from 'axios'
@@ -20,7 +21,7 @@ const ScheduleVisitModal = ({ show, onClose, propertyId, propertyTitle }) => {
       return
     }
     setLoading(true)
-    const response = await axios.post('http://localhost:9000/api/schedule-visit', {
+    const response = await axios.post(API_BASE + '/api/schedule-visit', {
       userId: userData._id,
       propertyId,
       propertyTitle,

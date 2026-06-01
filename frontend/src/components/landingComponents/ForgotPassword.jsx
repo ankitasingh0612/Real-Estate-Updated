@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React from 'react';
 import { FaEnvelope, FaKey } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
@@ -23,7 +24,7 @@ const ForgotPassword = () => {
 
   const handleReset = async (data) => {
     try {
-      const response = await axios.post('http://localhost:9000/api/forgot-password', data);
+      const response = await axios.post(API_BASE + '/api/forgot-password', data);
       
       if (response?.data?.code === 200) {
         Swal.fire({

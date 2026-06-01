@@ -1,3 +1,4 @@
+import { API_BASE } from '../../config/api.js';
 import React from 'react'
 import NavBar from '../landingComponents/NavBar';
 import { FaUser } from "react-icons/fa";
@@ -41,7 +42,7 @@ const AddProperty = () => {
       formData.append('sellerName', userInfo.name);
     }
 
-    const response = await axios.post('http://localhost:9000/api/add-property', formData, {
+    const response = await axios.post(API_BASE + '/api/add-property', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
